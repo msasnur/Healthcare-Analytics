@@ -12,7 +12,11 @@ Introduction:
   Being able to predict the length of stay (LOS) allows hospitals to optimize their treatment plans to reduce LOS, to reduce infection rates among patients, staff, and visitors.
 
 Project Highligths:
+
 Hospital admission data was analyzed to accurately predict the patient’s Length of Stay at the of admit so that the hospitals can optimize resources and function better. Built 3 models in Python to predict the length of stay,
-•	A supervised algorithm Naïve Bayes which yields an accuracy of 34.55%.
-•	An ensemble method XGBoost which yields an accuracy of 43.05%.
-•	A dense neural network with 6 layers which yields an accuracy of 42.5%.
+
+- A supervised algorithm Naïve Bayes which yields an accuracy of 34.55%.
+
+-	An ensemble method XGBoost which yields an accuracy of 43.05%.
+
+-	A dense neural network with 6 layers which yields an accuracy of 42.5%.
