@@ -15,8 +15,9 @@ Project Highligths:
 
 Hospital admission data was analyzed to accurately predict the patient’s Length of Stay at the of admit so that the hospitals can optimize resources and function better. Built 3 models in Python to predict the length of stay,
 
-- A supervised algorithm Naïve Bayes which yields an accuracy of 34.55%.
+-	A supervised algorithm Naïve Bayes which was classifying with an accuracy of 34.55%.
 
--	An ensemble method XGBoost which yields an accuracy of 43.05%.
+-	An ensemble method XGBoost which was predicting with an accuracy of 43.05%.
 
 -	A dense neural network with 6 layers which yields an accuracy of 42.5%.
+
