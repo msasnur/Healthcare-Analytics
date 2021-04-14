@@ -13,7 +13,7 @@ Introduction:
 
 Project Highligths:
 
-Hospital admission data was analyzed to accurately predict the patient’s Length of Stay at the of admit so that the hospitals can optimize resources and function better. Built 3 models in Python to predict the length of stay,
+Hospital admission data was analyzed to accurately predict the patient’s Length of Stay at the time of admit so that the hospitals can optimize resources and function better. Built 3 models in Python to predict the length of stay,
 
 -	A supervised algorithm Naïve Bayes which was classifying with an accuracy of 34.55%.
 
