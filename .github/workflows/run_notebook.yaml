@@ -12,7 +12,18 @@ jobs:
         with:
           python-version: '3.10'
           cache: 'pip' # caching pip dependencies
+      - uses: syphar/restore-virtualenv@v1
+        id: cache-virtualenv
+        with:
+          requirement_files: requirements.txt  # this is optional
+
+      - uses: syphar/restore-pip-download-cache@v1
+        if: steps.cache-virtualenv.outputs.cache-hit != 'true'
+
+        # the package installation will only be executed when the
+        # requirements-files have changed.
       - run: pip install -r requirements.txt
+        if: steps.cache-virtualenv.outputs.cache-hit != 'true'
       - uses: yaananth/run-notebook@v2
         env:
           RUNNER: ${{ toJson(runner) }}
@@ -21,13 +32,9 @@ jobs:
         with:
           notebook: "healthcare_analytics_xgboost.ipynb"
           isReport: False
-          poll: True
-      - name: Run the giskard scan
+          poll: False
+      - name: Run the Giskard Scan 🐢
         run: python scan.py
-      - uses: actions/upload-artifact@v3
-        with:
-          name: report
-          path: report
       - uses: actions/checkout@v4
       - run: |
           git config user.name github-actions
