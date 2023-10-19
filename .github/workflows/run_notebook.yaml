@@ -45,7 +45,8 @@ jobs:
       - name: Run the Giskard Scan 🐢
         id: giskard_scan
         run: |
-          output=$(python scan.py)
+          python scan.py
+          output=$(find report -iname "*.md" -exec basename {} .md ';')
           echo "::set-output name=report_name::$output"
       - name: Extract branch name 🌲
         shell: bash
@@ -53,7 +54,7 @@ jobs:
         id: extract_branch
       - name: Extract commit sha 🔢
         shell: bash
-        run: echo "sha=${GITHUB_HEAD_REF:-$(git rev-parse --short "$GITHUB_SHA")}" >> $GITHUB_OUTPUT
+        run: echo "sha=${GITHUB_HEAD_SHA:-$(git rev-parse --short "$GITHUB_SHA")}" >> $GITHUB_OUTPUT
         id: extract_sha
       - name: Upload the scan report 🤖
         run: |
@@ -82,7 +83,7 @@ jobs:
             However, it's important to note that automated scans may produce false positives or miss certain vulnerabilities. We encourage you to review the findings and assess the impact accordingly.
             
             Report summary
-            ${{ steps.extract_md_report.outputs.md_report }}
+            $(cat report/*.md)
             
             [View full report](https://htmlpreview.github.io/?${{ github.server_url }}/${{ github.repository 
             }}/blob/${{ steps.extract_sha.outputs.sha }}/reports/${{ steps.giskard_scan.outputs.report_name }}.html)
