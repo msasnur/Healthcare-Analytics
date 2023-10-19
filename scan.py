@@ -36,5 +36,7 @@ if __name__ == '__main__':
     model, data = load_giskard_model_dataset()
     report = scan(model, data, only=["performance_bias"])
     pathlib.Path("report").mkdir(parents=True, exist_ok=True)
-    report_path = str(datetime.now().strftime("%Y.%m.%d-%H.%M.%S"))+".html"
-    report.to_html("report/"+report_path)
+    date = str(datetime.now().strftime("%Y.%m.%d-%H.%M.%S"))
+    report.to_html("report/"+date+".html")
+    report.to_html("report/"+date+".md")
+    print(date)
