@@ -35,7 +35,15 @@ jobs:
           poll: False
       - name: Run the Giskard Scan 🐢
         run: python scan.py
+      - uses: actions/upload-artifact@v3
+        with:
+          name: report
+          path: report
       - uses: actions/checkout@v4
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: report
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
