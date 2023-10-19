@@ -1,6 +1,12 @@
 name: Execute notebook
 
-on: [push]
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'hyper-parameters.yaml'
+    branches:
+      - main
 
 jobs:
   run:
@@ -44,7 +50,7 @@ jobs:
           mkdir -p reports
           mv report/* reports/.
           git add reports
-          git commit -m "🤖github-bot: Updated Reports"
+          git commit -m "🤖 github-bot: Updated Reports"
           git push
       - name: PR comment
         uses: wow-actions/auto-comment@v1
