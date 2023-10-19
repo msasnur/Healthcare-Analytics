@@ -35,6 +35,6 @@ def load_giskard_model_dataset(model_path="model", dataset_path="dataset") -> (B
 if __name__ == '__main__':
     model, data = load_giskard_model_dataset()
     report = scan(model, data)
-    pathlib.Path("reports").mkdir(parents=True, exist_ok=True)
+    pathlib.Path("report").mkdir(parents=True, exist_ok=True)
     report_path = str(datetime.now().strftime("%Y.%m.%d-%H.%M.%S"))+".html"
-    report.to_html("reports/"+report_path)
+    report.to_html("report/"+report_path)
