@@ -47,19 +47,29 @@ jobs:
         run: |
           output=$(python scan.py)
           echo "::set-output name=report_name::$output"
-      - name: Extract branch name
+      - name: Extract branch name 🌲
         shell: bash
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
+      - name: Extract commit sha 🔢
+        shell: bash
+        run: echo "sha=${GITHUB_HEAD_REF:-$(git rev-parse --short "$GITHUB_SHA")}" >> $GITHUB_OUTPUT
+        id: extract_sha
       - name: Upload the scan report 🤖
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           mkdir -p reports
-          mv report/* reports/.
+          cp report/* reports/.
           git add reports
           git commit -m "🤖 github-bot: Updated Reports"
           git push
+      - name: Extract md report
+        shell: bash
+        run: |
+          output=$(cat report/*.md)
+          echo "::set-output name=md_report::$output"
+        id: extract_md_report
       - name: PR comment 🤖
         uses: wow-actions/auto-comment@v1
         with:
@@ -72,6 +82,7 @@ jobs:
             However, it's important to note that automated scans may produce false positives or miss certain vulnerabilities. We encourage you to review the findings and assess the impact accordingly.
             
             Report summary
+            ${{ steps.extract_md_report.outputs.md_report }}
             
             [View full report](https://htmlpreview.github.io/?${{ github.server_url }}/${{ github.repository 
-            }}/blob/main/reports/${{ steps.giskard_scan.outputs.report_name }}.html)
+            }}/blob/${{ steps.extract_sha.outputs.sha }}/reports/${{ steps.giskard_scan.outputs.report_name }}.html)
