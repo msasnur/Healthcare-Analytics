@@ -38,5 +38,5 @@ if __name__ == '__main__':
     pathlib.Path("report").mkdir(parents=True, exist_ok=True)
     date = str(datetime.now().strftime("%Y.%m.%d-%H.%M.%S"))
     report.to_html("report/"+date+".html")
-    report.to_html("report/"+date+".md")
+    report.to_markdown("report/"+date+".md", template="github")
     print(date)
