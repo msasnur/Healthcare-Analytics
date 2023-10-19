@@ -20,7 +20,6 @@ jobs:
           GITHUB: ${{ toJson(github) }}
         with:
           notebook: "healthcare_analytics_xgboost.ipynb"
-          #params: "PATHTOPARAMS.json"
           isReport: False
           poll: True
       - uses: actions/upload-artifact@v3
@@ -30,3 +29,12 @@ jobs:
           path: ${{ RUNNER.temp }}/nb-runner
         env:
           RUNNER: ${{ toJson(runner) }}
+      - name: Run the giskard scan
+        run: python scan.py
+      - uses: actions/checkout@v4
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add reports
+          git commit -m "Updated Reports"
+          git push
