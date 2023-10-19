@@ -79,7 +79,7 @@ jobs:
             However, it's important to note that automated scans may produce false positives or miss certain vulnerabilities. We encourage you to review the findings and assess the impact accordingly.
             
             Report summary
-            ${{ cat report/*.md }}
+            ${{ steps.extract_md_report.outputs.md_report }}
             
             [View full report](https://htmlpreview.github.io/?${{ github.server_url }}/${{ github.repository 
             }}/blob/${{ steps.extract_sha.outputs.sha }}/reports/${{ steps.giskard_scan.outputs.report_name }}.html)
