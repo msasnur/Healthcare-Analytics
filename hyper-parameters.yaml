@@ -1,0 +1,15 @@
+train_test_split:
+  test_size: 0.20
+  random_state: 100
+  
+XGBClassifier:
+  max_depth: 4
+  learning_rate: 0.1
+  n_estimators: 800
+  objective: 'multi:softmax'
+  reg_alpha: 0.5
+  reg_lambda: 1.5
+  booster: 'gbtree'
+  n_jobs: 4
+  min_child_weight: 2
+  base_score: 0.75
