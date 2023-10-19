@@ -1,12 +1,10 @@
-name: Execute notebook
+name: Giskard Scan
 
 on:
   workflow_dispatch:
   pull_request:
     paths:
       - 'hyper-parameters.yaml'
-    branches:
-      - main
 
 jobs:
   run:
