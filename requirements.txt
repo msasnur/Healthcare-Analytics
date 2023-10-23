@@ -28,7 +28,7 @@ exceptiongroup==1.1.3
 executing==2.0.0
 fastjsonschema==2.18.1
 fqdn==1.5.1
-"giskard@git+https://github.com/Giskard-AI/giskard.git@main"
+giskard@git+https://github.com/Giskard-AI/giskard.git@main
 gitdb==4.0.10
 GitPython==3.1.40
 idna==3.4
