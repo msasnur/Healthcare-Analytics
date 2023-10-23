@@ -61,9 +61,9 @@ jobs:
           git commit -m "🤖 github-bot: Updated Reports"
           git push
           echo "::set-output name=sha::$(git rev-parse HEAD)"
-      #- name: Extract md report
-      #  run: echo "md_report=$(cat report/*.md)" >> $GITHUB_OUTPUT
-      #  id: extract_md_report
+      - name: Extract md report
+        run: echo "md_report=$(cat report/*.md)" >> $GITHUB_OUTPUT
+        id: extract_md_report
       - name: PR comment 🤖
         uses: wow-actions/auto-comment@v1
         with:
@@ -74,6 +74,10 @@ jobs:
             We have identified potential **vulnerabilities** in your model based on an automated scan.
             
             However, it's important to note that automated scans may produce false positives or miss certain vulnerabilities. We encourage you to review the findings and assess the impact accordingly.
+            
+            ## Report summary
+            
+            ${{ steps.extract_md_report.outputs.md_report }}
             
             [**View full report**](https://htmlpreview.github.io/?${{ github.server_url }}/${{ github.repository 
             }}/blob/${{ steps.extract_sha.outputs.sha }}/reports/${{ steps.giskard_scan.outputs.report_name }}.html)
