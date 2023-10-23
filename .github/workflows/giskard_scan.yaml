@@ -65,9 +65,9 @@ jobs:
         # https://stackoverflow.com/questions/74137120/how-to-fix-or-avoid-error-unable-to-process-file-command-output-successfully
         run: |
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          echo -n "md_report<<$EOF" >> $GITHUB_OUTPUT
+          echo "md_report<<$EOF" >> $GITHUB_OUTPUT
           echo -n "$(cat report/*.md)" >> $GITHUB_OUTPUT
-          echo -n "$EOF" >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
         id: extract_md_report
       - name: PR comment 🤖
         uses: wow-actions/auto-comment@v1
