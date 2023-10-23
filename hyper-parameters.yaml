@@ -4,7 +4,7 @@ train_test_split:
   
 XGBClassifier:
   max_depth: 4
-  learning_rate: 0.1
+  learning_rate: 0.2
   n_estimators: 800
   objective: 'multi:softmax'
   reg_alpha: 0.5
